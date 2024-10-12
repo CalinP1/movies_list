@@ -2,3 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-no-repeat bg-cover bg-fixed;
+    background-image: url("../public/background_wavy_colorful.png");
+    background-position: center;
+    background-size: cover;
+  }
+}
