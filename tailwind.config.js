@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         codystar: ["Codystar", "sans-serif"],
+        opensans: ["Open Sans", "sans-serif"],
       },
     },
   },
