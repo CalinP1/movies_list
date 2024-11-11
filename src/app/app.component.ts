@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-root',
   standalone: true,

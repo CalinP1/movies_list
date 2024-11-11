@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchFormComponent } from '../search-form/search-form.component';
-
+import { MovieService } from '../services/movie.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [SearchFormComponent],
+  imports: [SearchFormComponent, CommonModule],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css',
 })
-export class MovieListComponent {}
+export class MovieListComponent implements OnInit {
+  movies: any[] = [];
+  constructor(private movieService: MovieService) {}
+  ngOnInit(): void {
+    this.movieService.getMovier().subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.movies = data;
+      },
+      error: (err) => {
+        console.error('Eroare la obtinerea rezultatelor', err);
+      },
+    });
+  }
+}

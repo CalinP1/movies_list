@@ -1,2 +1,10 @@
 <p>movie-list works!</p>
 <app-search-form></app-search-form>
+<div *ngIf="movies.length > 0">
+  <h3>Movies:</h3>
+  <ul>
+    <li *ngFor="let movie of movies">
+      {{ movie.name }} - Rating: {{ movie.tmdb_id }}
+    </li>
+  </ul>
+</div>

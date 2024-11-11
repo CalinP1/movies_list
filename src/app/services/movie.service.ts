@@ -7,5 +7,9 @@ import { environment } from '../environments/environments';
 export class MovieService {
   private apikey = environment.apiKey;
   private apiUrl = `https://api.watchmode.com/v1/genres/?apiKey=${this.apikey}`;
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  getMovier() {
+    return this.http.get(this.apiUrl);
+  }
 }
