@@ -1,10 +1,14 @@
-<form class="components-class flex flex-col">
+<form
+  class="components-class flex flex-col"
+  [formGroup]="searchForm"
+  (ngSubmit)="onSubmit()"
+>
   <h2>Next to watch..</h2>
   <label for="title">Title: </label>
-  <input id="title" type="text" />
+  <input id="title" type="text" formControlName="title" />
 
   <label for="genre">Genre: </label>
-  <select id="genre" type="text">
+  <select id="genre" type="text" formControlName="genre">
     <option>horror</option>
     <option>comedy</option>
     <option>thriller</option>
@@ -12,12 +16,17 @@
   </select>
 
   <label for="minRating">Rating: </label>
-  <select id="minRating" type="text">
+  <select id="minRating" type="text" formControlName="minRating">
     <option>3 stars</option>
     <option>4 stars</option>
     <option>5 stars</option>
     <option>action</option>
   </select>
 
-  <button>Search</button>
+  <button type="submit" [disabled]="!searchForm.valid">Search</button>
 </form>
+
+<p>Value: {{ searchForm.get("title")!.value }}</p>
+<p>Value: {{ searchForm.get("minRating")!.value }}</p>
+<p>Value: {{ searchForm.get("genre")!.value }}</p>
+<p>Value: {{ !searchForm.valid }}</p>
