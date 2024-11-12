@@ -14,11 +14,14 @@ export class MovieListComponent implements OnInit {
   constructor(private movieService: MovieService) {}
   ngOnInit(): void {
     this.movieService.getMovier().subscribe({
+      // trimite cererea la API
       next: (data: any) => {
+        // primeste datele de la API
         console.log(data);
         this.movies = data;
       },
       error: (err) => {
+        // Error handler
         console.error('Eroare la obtinerea rezultatelor', err);
       },
     });
