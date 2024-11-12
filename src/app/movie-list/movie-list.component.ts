@@ -24,6 +24,9 @@ export class MovieListComponent implements OnInit {
         // Error handler
         console.error('Eroare la obtinerea rezultatelor', err);
       },
+      complete: () => {
+        console.log('Apelul API s-a incheiat');
+      },
     });
   }
 }
