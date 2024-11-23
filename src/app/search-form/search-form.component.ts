@@ -2,10 +2,12 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
 import { MovieService } from '../services/movie.service';
 import { MediaData } from '../models/mediaData.model';
+import { MovieListComponent } from '../movie-list/movie-list.component';
+
 @Component({
   selector: 'app-search-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MovieListComponent],
   templateUrl: './search-form.component.html',
   styleUrl: './search-form.component.css',
 })
@@ -30,6 +32,8 @@ export class SearchFormComponent {
     };
     this.movieService.findMovie(validData).subscribe({
       next: (movies) => {
+        this.movies = movies;
+
         console.log('Rezultatele filtrate:', movies);
       },
       error: (err) => {

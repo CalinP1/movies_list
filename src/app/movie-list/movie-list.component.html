@@ -1,8 +1,12 @@
-<p>movie-list works!</p>
-<app-search-form></app-search-form>
 <div *ngIf="movies.length > 0">
-  <h3>Movies:</h3>
+  <h2>Rezultate:</h2>
   <ul>
-    <li *ngFor="let movie of movies">{{ movie.title }} - Rating:</li>
+    <li *ngFor="let movie of movies">
+      {{ movie.name }}
+    </li>
   </ul>
 </div>
+
+<!-- <ng-template #noResults>
+  <p>Nu există rezultate pentru căutarea ta.</p>
+</ng-template> -->

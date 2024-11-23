@@ -10,5 +10,4 @@
   <button type="submit" [disabled]="!searchForm.valid">Search</button>
 </form>
 
-<p>Value: {{ searchForm.get("title")!.value }}</p>
-<p>Value: {{ !searchForm.valid }}</p>
+<app-movie-list [movies]="movies"></app-movie-list>
