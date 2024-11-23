@@ -12,8 +12,8 @@ export class MovieService {
 
   constructor(private http: HttpClient) {}
 
-  public buildUrl(searchData: MediaData): string {
-    return `${this.baseUrl}/autocomplete-search/?apiKey=${this.apikey}&search_value=${searchData.title}}`;
+  private buildUrl(searchData: MediaData): string {
+    return `${this.baseUrl}/autocomplete-search/?apiKey=${this.apikey}&search_value=${searchData.title}`;
   }
 
   findMovie(searchData: MediaData): Observable<MediaData[]> {
@@ -22,9 +22,10 @@ export class MovieService {
   }
 
   private getMovier(apiUrl: string): Observable<MediaData[]> {
+    console.log(apiUrl);
     return this.http.get<MediaData[]>(apiUrl).pipe(
       map((data: any) => {
-        return data;
+        return data.results;
       }),
       catchError((error) => {
         console.error('Eroare la obținerea filmelor:', error);
