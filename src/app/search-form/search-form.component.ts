@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
+import { MovieService } from '../services/movie.service';
+import { MediaData } from '../models/mediaData.model';
 @Component({
   selector: 'app-search-form',
   standalone: true,
@@ -8,15 +10,30 @@ import { ReactiveFormsModule, Validators, FormBuilder } from '@angular/forms';
   styleUrl: './search-form.component.css',
 })
 export class SearchFormComponent {
-  private formBuilder = inject(FormBuilder);
+  searchForm: any;
+  constructor(
+    private formBuilder: FormBuilder,
+    private movieService: MovieService
+  ) {}
 
-  searchForm = this.formBuilder.group({
-    title: ['', Validators.required],
-    genre: ['', Validators.required],
-    minRating: ['', Validators.required],
-  });
+  ngOnInit() {
+    this.searchForm = this.formBuilder.group({
+      title: ['', Validators.required],
+    });
+  }
 
   onSubmit() {
-    console.warn(this.searchForm.value);
+    const formData = this.searchForm.value;
+    const validData: MediaData = {
+      title: formData.title || '',
+    };
+    this.movieService.findMovie(validData).subscribe({
+      next: (movies) => {
+        console.log('Rezultatele filtrate:', movies);
+      },
+      error: (err) => {
+        console.error('Eroare la obținerea datelor:', err);
+      },
+    });
   }
 }
