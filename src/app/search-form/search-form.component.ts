@@ -11,6 +11,7 @@ import { MediaData } from '../models/mediaData.model';
 })
 export class SearchFormComponent {
   searchForm: any;
+  movies: MediaData[] = [];
   constructor(
     private formBuilder: FormBuilder,
     private movieService: MovieService
